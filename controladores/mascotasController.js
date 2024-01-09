@@ -17,11 +17,17 @@ const crear = (req, res) => {
     mascotas.create(dataset)
         .then((resultado) => {
             console.log("Registro creado correctamente:", resultado);
-            return res.status(201).json({ mensaje: "Registro creado correctamente", resultado });
+            return res.status(201).json({ 
+                tipo: "success",
+                mensaje: "Registro creado correctamente", resultado 
+            });
         })
         .catch((err) => {
             console.error("Error al crear el registro:", err);
-            return res.status(500).json({ mensaje: "Error al crear el registro", error: err.message });
+            return res.status(500).json({ 
+                tipo: "error", 
+                mensaje: "Error al crear el registro", error: err.message 
+            });
         });
 };
 
@@ -77,11 +83,16 @@ const actualizar = (req, res) => {
         })
         .then((mascotaActualizada) => {
             console.log("Mascota actualizada:", mascotaActualizada);
-            return res.status(200).json({ mensaje: "Mascota actualizada correctamente", mascotaActualizada });
+            return res.status(200).json({ 
+                tipo: "success",
+                mensaje: "Mascota actualizada correctamente", mascotaActualizada });
         })
         .catch((err) => {
             console.error("Error al actualizar la mascota:", err);
-            return res.status(500).json({ mensaje: `Error al actualizar la mascota: ${err.message}` });
+            return res.status(500).json({ 
+                tipo: "error",
+                mensaje: `Error al actualizar la mascota: ${err.message}` 
+            });
         });
 };
 
@@ -100,11 +111,17 @@ const eliminar = (req, res) => {
         })
         .then(() => {
             console.log("Mascota eliminada correctamente");
-            return res.status(200).json({ mensaje: "Mascota eliminada correctamente" });
+            return res.status(200).json({ 
+                tipo: "success",
+                mensaje: "Mascota eliminada correctamente" 
+            });
         })
         .catch((err) => {
             console.error("Error al eliminar la mascota:", err);
-            return res.status(500).json({ mensaje: `Error al eliminar la mascota: ${err.message}` });
+            return res.status(500).json({ 
+                tipo: "error",
+                mensaje: `Error al eliminar la mascota: ${err.message}` 
+            });
         });
 };
 

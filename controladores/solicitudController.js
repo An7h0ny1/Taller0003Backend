@@ -36,10 +36,14 @@ const crear = async (req, res) => {
             estado: 'Pendiente'
         });
     
-        res.status(201).json({ mensaje: "Solicitud creada correctamente", solicitud: nuevaSolicitud });
+        res.status(201).json({ 
+            tipo: "success",
+            mensaje: "Solicitud creada correctamente", solicitud: nuevaSolicitud });
     } catch (error) {
         console.error("Error al crear la solicitud:", error);
-        res.status(500).json({ mensaje: "Error al crear la solicitud", error: error.message });
+        res.status(500).json({ 
+            tipo: "error",
+            mensaje: "Error al crear la solicitud", error: error.message });
     }
 };
 
@@ -92,11 +96,15 @@ const actualizar = (req, res) => {
         return solicitud.update(nuevosDatos);
       })
       .then((solicitudActualizada) => {
-        res.status(200).json({ mensaje: "Solicitud actualizada correctamente", solicitud: solicitudActualizada });
+        res.status(200).json({ 
+            tipo: "success",
+            mensaje: "Solicitud actualizada correctamente", solicitud: solicitudActualizada });
       })
       .catch((error) => {
         console.error("Error al actualizar la solicitud:", error);
-        res.status(500).json({ mensaje: `Error al actualizar la solicitud: ${error.message}` });
+        res.status(500).json({ 
+            tipo: "error",
+            mensaje: `Error al actualizar la solicitud: ${error.message}` });
       });
 };
 
@@ -114,11 +122,15 @@ const eliminar = (req, res) => {
         })
         .then(() => {
             console.log("Solicitud eliminada correctamente");
-            return res.status(200).json({ mensaje: "Solicitud eliminada correctamente" });
+            return res.status(200).json({ 
+                tipo: "success",
+                mensaje: "Solicitud eliminada correctamente" });
         })
         .catch((err) => {
             console.error("Error al eliminar la solicitud:", err);
-            return res.status(500).json({ mensaje: `Error al eliminar la solicitud: ${err.message}` });
+            return res.status(500).json({ 
+                tipo: "error",
+                mensaje: `Error al eliminar la solicitud: ${err.message}` });
         });
 };
 export { crear, buscarId, buscar, actualizar, eliminar };

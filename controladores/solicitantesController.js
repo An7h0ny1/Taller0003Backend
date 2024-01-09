@@ -17,11 +17,15 @@ const crear = (req, res) => {
     solicitantes.create(dataset)
         .then((resultado) => {
             console.log("Registro creado correctamente:", resultado);
-            return res.status(201).json({ mensaje: "Registro creado correctamente", resultado });
+            return res.status(201).json({ 
+                tipo: "success",
+                mensaje: "Registro creado correctamente", resultado });
         })
         .catch((err) => {
             console.error("Error al crear el registro:", err);
-            return res.status(500).json({ mensaje: "Error al crear el registro", error: err.message });
+            return res.status(500).json({ 
+                tipo: "error",
+                mensaje: "Error al crear el registro", error: err.message });
         });
 };
 
@@ -78,11 +82,15 @@ const actualizar = (req, res) => {
         })
         .then((personaActualizada) => {
             console.log("Persona actualizada:", personaActualizada);
-            return res.status(200).json({ mensaje: "Persona actualizada correctamente", personaActualizada });
+            return res.status(200).json({ 
+                tipo: "success",
+                mensaje: "Persona actualizada correctamente", personaActualizada });
         })
         .catch((err) => {
             console.error("Error al actualizar a la persona:", err);
-            return res.status(500).json({ mensaje: `Error al actualizar a la persona: ${err.message}` });
+            return res.status(500).json({ 
+                tipo: "error",
+                mensaje: `Error al actualizar a la persona: ${err.message}` });
         });
 };
 
@@ -101,11 +109,15 @@ const eliminar = (req, res) => {
         })
         .then(() => {
             console.log("Persona eliminada correctamente");
-            return res.status(200).json({ mensaje: "persona eliminada correctamente" });
+            return res.status(200).json({ 
+                tipo: "success",
+                mensaje: "persona eliminada correctamente" });
         })
         .catch((err) => {
             console.error("Error al eliminar a la persona:", err);
-            return res.status(500).json({ mensaje: `Error al eliminar a la persona: ${err.message}` });
+            return res.status(500).json({ 
+                tipo: "error",
+                mensaje: `Error al eliminar a la persona: ${err.message}` });
         });
 };
 

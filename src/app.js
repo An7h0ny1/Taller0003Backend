@@ -3,9 +3,12 @@ import { db } from "../database/conexion.js";
 import { routerMascotas } from "../rutas/mascotasRouter.js";
 import { routerPersonas } from "../rutas/solicitantesRouter.js";
 import { routerSolicitud } from "../rutas/solicitudRouter.js";
+import { router } from "../rutas/auth.js";
+import cors from "cors";
 
 const app = express();
 
+app.use(cors());
 app.use(express.json()); 
 
 //Verificar Conexion a Base de Datos
@@ -20,6 +23,9 @@ const PORT = 8000;
 app.use("/mascotas", routerMascotas);
 app.use("/solicitantes", routerPersonas);
 app.use("/solicitudes", routerSolicitud);
+
+// Montar el router de autenticación en la ruta "/auth"
+app.use("/auth", router);
 
 //Verificar que pueda sincronizar con la base de datos
 db.sync().then(()=>{
